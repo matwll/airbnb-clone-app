@@ -8,7 +8,7 @@ import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 
-type Props = {
+interface ListingCardProps {
   data: SafeListing;
   reservation?: SafeReservation;
   onAction?: (id: string) => void;
@@ -16,9 +16,9 @@ type Props = {
   actionLabel?: string;
   actionId?: string;
   currentUser?: SafeUser | null;
-};
+}
 
-const ListingCard = ({
+const ListingCard: React.FC<ListingCardProps> = ({
   data,
   reservation,
   onAction,
@@ -26,7 +26,7 @@ const ListingCard = ({
   actionLabel,
   actionId = "",
   currentUser,
-}: Props) => {
+}: ListingCardProps) => {
   const router = useRouter();
   const { getByValue } = useCountries();
   const location = getByValue(data.locationValue);
